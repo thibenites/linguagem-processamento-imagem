@@ -1,0 +1,13 @@
+LATEX:
+Para abrir e compilar arquivos .tex, eu sugiro usar um editor tex. Por exemplo, eu gosto do TexStudio. É possível instalá-lo com os seguintes comandos no terminal:
+sudo apt-add-repository ppa:blahota/texstudio 
+sudo apt-get update
+sudo apt-get install texstudio
+
+GIT:
+Lembre sempre de usar o comando <git pull> para atualizar sua pasta local com a versão mais recente que está na nuvem.
+
+Ao atualizar algum arquivo, não esqueça de enviar para o servidor, para que todos tenham acesso. Para isso:
+Caso necessário, adicione arquivosnovos com <git add .>
+Faça seu commit e dê uma descrição breve e explicativa de o que você mudou nessa atualização com <git commit -m "descricao breve e explicativa">
+Envie os arquivos com <git pull>
