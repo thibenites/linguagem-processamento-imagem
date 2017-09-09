@@ -30,12 +30,13 @@ imagem abrir_imagem(char *nome_do_arquivo) {
 
   I.width = x;
   I.height = y;
+  
   I.r = malloc(sizeof(float) * x * y);
   I.g = malloc(sizeof(float) * x * y);
   I.b = malloc(sizeof(float) * x * y);
 
    for (int i=0; i<x; i++) {
-     for (int j=0; j <y; j++) {
+     for (int j=0; j<y; j++) {
       int idx;
       FreeImage_GetPixelColor(bitmapIn, i, j, &color);
 
@@ -76,24 +77,29 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
 }
 
 //AINDA NAO ESTA FUNCIONANDO
-/*imagem aplicar_brilho(imagem *J, float valor) {
-  imagem I;
+imagem aplicar_brilho(imagem *I, float valor) {
+  imagem J;
 
-  I.height = J->height;
-  I.width = J->width;
+  J.height = I->height;
+  J.width = I->width;
 
-  for(int i=0; i<I.width; i++){
-    for(int j=0; j<I.height; j++){
+  printf("height: %d\n",J.height);
+  printf("width: %d\n",J.width);
+
+  for (int i=0; i<J.width; i++) {
+     for (int j=0; j<J.height; j++) {
       int idx;
 
-      idx = i + (j*I.width);
-      I.r[idx] = J->r[idx] * valor;
-      I.g[idx] = J->g[idx] * valor;
-      I.b[idx] = J->b[idx] * valor;
+      idx = i + (j*J.width);
+      printf("R:%f G:%f B:%f\n",I->r[idx],I->g[idx],I->b[idx]);
+      J.r[idx] = I->r[idx] * valor;
+      J.g[idx] = I->g[idx] * valor;
+      //NAO CONSIGO ACESSAR O VETOR DE BLUE DA IMAGEM J!!!
+      //J.b[idx] = I->b[idx] * valor;
     }
   }
 
   printf("Brilho aplicado!\n");
 
-  return I;
-}/*
+  return J;
+}

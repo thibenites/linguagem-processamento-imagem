@@ -11,3 +11,6 @@ Ao atualizar algum arquivo, não esqueça de enviar para o servidor, para que to
 Caso necessário, adicione arquivosnovos com <git add .>
 Faça seu commit e dê uma descrição breve e explicativa de o que você mudou nessa atualização com <git commit -m "descricao breve e explicativa">
 Envie os arquivos com <git pull>
+
+FREEIMAGE:
+A documentação da biblioteca está disponível em: http://freeimage.sourceforge.net/documentation.html

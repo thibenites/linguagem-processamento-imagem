@@ -1239,9 +1239,9 @@ yyreduce:
 #line 36 "./src/imageprocessing.y" /* yacc.c:1646  */
     {
         printf("Aplicando brilho *%f\n", (yyvsp[0].fval));
-        //imagem I = abrir_imagem($3);
-        //I = aplicar_brilho(&I,$5);
-        //salvar_imagem($1,&I);
+        imagem I = abrir_imagem((yyvsp[-2].strval));
+        imagem J = aplicar_brilho(&I,(yyvsp[0].fval));
+        salvar_imagem((yyvsp[-4].strval),&I);
                                        }
 #line 1247 "y.tab.c" /* yacc.c:1646  */
     break;
