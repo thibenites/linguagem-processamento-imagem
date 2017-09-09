@@ -1,4 +1,3 @@
-
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -47,6 +46,7 @@ imagem abrir_imagem(char *nome_do_arquivo) {
       I.b[idx] = color.rgbBlue;
     }
    }
+   printf("Acabou leitura!\n");
   return I;
 
 }
@@ -72,5 +72,27 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
   }
 
   FreeImage_Save(FIF_JPEG, bitmapOut, nome_do_arquivo, JPEG_DEFAULT);
+  printf("Imagem salva!\n");
 }
 
+imagem aplicar_brilho(imagem *J, float valor) {
+  imagem I;
+
+  I.height = J->height;
+  I.width = J->width;
+
+  for(int i=0; i<I.width; i++){
+    for(int j=0; j<I.height; j++){
+      int idx;
+
+      /*idx = i + (j*I.width);
+      I.r[idx] = J->r[idx] * valor;
+      I.g[idx] = J->g[idx] * valor;
+      I.b[idx] = J->b[idx] * valor;*/
+    }
+  }
+
+  printf("Brilho aplicado!\n");
+
+  return I;
+}

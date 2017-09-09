@@ -57,7 +57,7 @@ multiplicado ou dividido por um valor float, como por exemplo:
 
 * `teste.jpg = demo.jpg * 0.5`
 * `teste.jpg = demo.jpg * 1.0`
-* `teste.jpg = demo.jpg / 2`
+* `teste.jpg = demo.jpg / 2` 
 
 ## Valor máximo
 O operador valor máximo deve retornar o valor máximo dos pixels da imagem. A

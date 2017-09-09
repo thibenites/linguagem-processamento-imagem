@@ -10,9 +10,11 @@ int yylex(void);
 %union {
   char    strval[50];
   int     ival;
+  float   fval;
 }
 %token <strval> STRING
-%token <ival> VAR IGUAL EOL ASPA
+%token <ival> VAR IGUAL EOL ASPA VEZES DIVIDIDO
+%token <fval> FLOAT
 %left SOMA
 
 %%
@@ -29,7 +31,20 @@ EXPRESSAO:
         printf("Li imagem %d por %d\n", I.width, I.height);
         salvar_imagem($1, &I);
                           }
+    ;
 
+    | STRING IGUAL STRING VEZES FLOAT {
+        printf("Aplicando brilho *%f\n", $5);
+        //imagem I = abrir_imagem($3);
+        //I = aplicar_brilho(&I,$5);
+        //salvar_imagem($1,&I);
+                                       }
+    ;
+
+    | STRING IGUAL STRING DIVIDIDO FLOAT {
+        printf("Aplicando brilho /%f\n", $5);
+        //imagem I = abrir_imagem($3);
+                                       }
     ;
 
 %%
@@ -42,5 +57,4 @@ int main() {
   FreeImage_Initialise(0);
   yyparse();
   return 0;
-
 }
