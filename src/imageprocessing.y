@@ -13,7 +13,7 @@ int yylex(void);
   float   fval;
 }
 %token <strval> STRING
-%token <ival> VAR IGUAL EOL ASPA VEZES DIVIDIDO
+%token <ival> VAR IGUAL EOL ASPA VEZES DIVIDIDO ABRE FECHA
 %token <fval> FLOAT
 %left SOMA
 
@@ -43,8 +43,17 @@ EXPRESSAO:
 
     | STRING IGUAL STRING DIVIDIDO FLOAT {
         printf("Aplicando brilho /%f\n", $5);
-        //imagem I = abrir_imagem($3);
+        imagem I = abrir_imagem($3);
+        imagem J = aplicar_brilho(&I,1/$5);
+        salvar_imagem($1,&I);
                                        }
+    ;
+    | ABRE STRING FECHA {
+        printf("Calcula maximo\n");
+        imagem I = abrir_imagem($2);
+        valor_maximo(&I);
+        //imagem I = abrir_imagem($3);
+                        }
     ;
 
 %%

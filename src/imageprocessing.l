@@ -13,7 +13,7 @@ void yyerror(char *);
         return VAR;
       }
 
-[0-9]+[.][0-9]+ {
+[0-9]+[.]*[0-9]* {
         yylval.fval = atof(yytext);
         return FLOAT;
       }
@@ -41,6 +41,14 @@ void yyerror(char *);
 
 [/] {
       return DIVIDIDO;
+    }
+
+\[ {
+      return ABRE;
+    }
+
+\] {
+      return FECHA;
     }
 
 \n {

@@ -52,8 +52,10 @@ extern int yydebug;
     ASPA = 262,
     VEZES = 263,
     DIVIDIDO = 264,
-    FLOAT = 265,
-    SOMA = 266
+    ABRE = 265,
+    FECHA = 266,
+    FLOAT = 267,
+    SOMA = 268
   };
 #endif
 /* Tokens.  */
@@ -64,8 +66,10 @@ extern int yydebug;
 #define ASPA 262
 #define VEZES 263
 #define DIVIDIDO 264
-#define FLOAT 265
-#define SOMA 266
+#define ABRE 265
+#define FECHA 266
+#define FLOAT 267
+#define SOMA 268
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -78,7 +82,7 @@ union YYSTYPE
   int     ival;
   float   fval;
 
-#line 82 "y.tab.h" /* yacc.c:1909  */
+#line 86 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

@@ -103,3 +103,21 @@ imagem aplicar_brilho(imagem *I, float valor) {
 
   return J;
 }
+
+void valor_maximo(imagem *I){
+  float maximo = 0;
+
+  for (int i=0; i<I->width; i++) {
+     for (int j=0; j<I->height; j++) {
+      int idx;
+      float intensidade;
+
+      idx = i + (j*I->width);
+      //printf("R:%f G:%f B:%f\n",I->r[idx],I->g[idx],I->b[idx]);
+      intensidade = (I->r[idx] + I->g[idx] + I->b[idx])/3.0;
+      if(intensidade > maximo)
+        maximo = intensidade;
+    }
+  }
+  printf("Intensidade maxima: %f\n", maximo);
+}
