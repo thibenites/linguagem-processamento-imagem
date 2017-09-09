@@ -75,7 +75,8 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
   printf("Imagem salva!\n");
 }
 
-imagem aplicar_brilho(imagem *J, float valor) {
+//AINDA NAO ESTA FUNCIONANDO
+/*imagem aplicar_brilho(imagem *J, float valor) {
   imagem I;
 
   I.height = J->height;
@@ -85,14 +86,14 @@ imagem aplicar_brilho(imagem *J, float valor) {
     for(int j=0; j<I.height; j++){
       int idx;
 
-      /*idx = i + (j*I.width);
+      idx = i + (j*I.width);
       I.r[idx] = J->r[idx] * valor;
       I.g[idx] = J->g[idx] * valor;
-      I.b[idx] = J->b[idx] * valor;*/
+      I.b[idx] = J->b[idx] * valor;
     }
   }
 
   printf("Brilho aplicado!\n");
 
   return I;
-}
+}/*
