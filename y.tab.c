@@ -1247,7 +1247,7 @@ yyreduce:
     {
         printf("Aplicando brilho *%f\n", (yyvsp[0].fval));
         imagem I = abrir_imagem((yyvsp[-2].strval));
-        imagem J = aplicar_brilho(&I,(yyvsp[0].fval));
+        aplicar_brilho(&I,(yyvsp[0].fval));
         salvar_imagem((yyvsp[-4].strval),&I);
                                        }
 #line 1254 "y.tab.c" /* yacc.c:1646  */
@@ -1258,7 +1258,7 @@ yyreduce:
     {
         printf("Aplicando brilho /%f\n", (yyvsp[0].fval));
         imagem I = abrir_imagem((yyvsp[-2].strval));
-        imagem J = aplicar_brilho(&I,1/(yyvsp[0].fval));
+        aplicar_brilho(&I,1/(yyvsp[0].fval));
         salvar_imagem((yyvsp[-4].strval),&I);
                                        }
 #line 1265 "y.tab.c" /* yacc.c:1646  */
@@ -1270,13 +1270,12 @@ yyreduce:
         printf("Calcula maximo\n");
         imagem I = abrir_imagem((yyvsp[-1].strval));
         valor_maximo(&I);
-        //imagem I = abrir_imagem($3);
                         }
-#line 1276 "y.tab.c" /* yacc.c:1646  */
+#line 1275 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1280 "y.tab.c" /* yacc.c:1646  */
+#line 1279 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1504,7 +1503,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 59 "./src/imageprocessing.y" /* yacc.c:1906  */
+#line 58 "./src/imageprocessing.y" /* yacc.c:1906  */
 
 
 void yyerror(char *s) {

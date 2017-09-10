@@ -36,7 +36,7 @@ EXPRESSAO:
     | STRING IGUAL STRING VEZES FLOAT {
         printf("Aplicando brilho *%f\n", $5);
         imagem I = abrir_imagem($3);
-        imagem J = aplicar_brilho(&I,$5);
+        aplicar_brilho(&I,$5);
         salvar_imagem($1,&I);
                                        }
     ;
@@ -44,7 +44,7 @@ EXPRESSAO:
     | STRING IGUAL STRING DIVIDIDO FLOAT {
         printf("Aplicando brilho /%f\n", $5);
         imagem I = abrir_imagem($3);
-        imagem J = aplicar_brilho(&I,1/$5);
+        aplicar_brilho(&I,1/$5);
         salvar_imagem($1,&I);
                                        }
     ;
@@ -52,7 +52,6 @@ EXPRESSAO:
         printf("Calcula maximo\n");
         imagem I = abrir_imagem($2);
         valor_maximo(&I);
-        //imagem I = abrir_imagem($3);
                         }
     ;
 

@@ -76,32 +76,21 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
   printf("Imagem salva!\n");
 }
 
-//AINDA NAO ESTA FUNCIONANDO
-imagem aplicar_brilho(imagem *I, float valor) {
-  imagem J;
+void aplicar_brilho(imagem *I, float valor) {
 
-  J.height = I->height;
-  J.width = I->width;
-
-  printf("height: %d\n",J.height);
-  printf("width: %d\n",J.width);
-
-  for (int i=0; i<J.width; i++) {
-     for (int j=0; j<J.height; j++) {
+  for (int i=0; i<I->width; i++) {
+     for (int j=0; j<I->height; j++) {
       int idx;
 
-      idx = i + (j*J.width);
-      printf("R:%f G:%f B:%f\n",I->r[idx],I->g[idx],I->b[idx]);
-      J.r[idx] = I->r[idx] * valor;
-      J.g[idx] = I->g[idx] * valor;
-      //NAO CONSIGO ACESSAR O VETOR DE BLUE DA IMAGEM J!!!
-      //J.b[idx] = I->b[idx] * valor;
+      idx = i + (j*I->width);
+      //printf("R:%f G:%f B:%f\n",I->r[idx],I->g[idx],I->b[idx]);
+      I->r[idx] = I->r[idx] * valor;
+      I->g[idx] = I->g[idx] * valor;
+      I->b[idx] = I->b[idx] * valor;
     }
   }
 
   printf("Brilho aplicado!\n");
-
-  return J;
 }
 
 void valor_maximo(imagem *I){
