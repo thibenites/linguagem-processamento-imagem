@@ -98,17 +98,14 @@ void aplicar_brilho(imagem *I, float valor) {
       idx = i + (j*I->width);
       //printf("R:%f G:%f B:%f\n",I->r[idx],I->g[idx],I->b[idx]);
       I->r[idx] = I->r[idx] * valor;
-      if(I->r[idx] > 255){
+      if(I->r[idx] > 255)
       	I->r[idx] = 255;
-      }
       I->g[idx] = I->g[idx] * valor;
-      if(I->g[idx] > 255){
+      if(I->g[idx] > 255)
       	I->g[idx] = 255;
-      }
       I->b[idx] = I->b[idx] * valor;
-      if(I->b[idx] > 255){
+      if(I->b[idx] > 255)
       	I->b[idx] = 255;
-      }
     }
   }
 

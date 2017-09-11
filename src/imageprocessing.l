@@ -43,11 +43,11 @@ void yyerror(char *);
       return DIVIDIDO;
     }
 
-\[ {
+\[  {
       return ABRE;
     }
 
-\] {
+\]  {
       return FECHA;
     }
 
