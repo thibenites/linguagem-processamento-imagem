@@ -14,6 +14,7 @@ void liberar_imagem(imagem *i);
 imagem abrir_imagem(char *nome_do_arquivo) {
   FIBITMAP *bitmapIn;
   int x, y;
+  //double valor_max_red = 0, valor_max_green = 0, valor_max_blue = 0;
   RGBQUAD color;
   imagem I;
 
@@ -43,10 +44,22 @@ imagem abrir_imagem(char *nome_do_arquivo) {
       idx = i + (j*x);
 
       I.r[idx] = color.rgbRed;
+      //if(I.r[idx] > valor_max_red){
+      	//(valor_max_red = I.r[idx]);
+      //}
       I.g[idx] = color.rgbGreen;
+      //if(I.g[idx] > valor_max_green){
+      	//(valor_max_green = I.g[idx]);
+      //}
       I.b[idx] = color.rgbBlue;
+      //if(I.b[idx] > valor_max_blue){
+      	//(valor_max_blue = I.b[idx]);
+      //}
     }
    }
+   /*printf("Valor máximo do bit vermelho: %lf.\n", valor_max_red);
+   printf("Valor máximo do bit verde: %lf.\n", valor_max_green);
+   printf("Valor máximo do bit azul: %lf.\n", valor_max_blue);*/
    printf("Acabou leitura!\n");
   return I;
 
@@ -85,8 +98,17 @@ void aplicar_brilho(imagem *I, float valor) {
       idx = i + (j*I->width);
       //printf("R:%f G:%f B:%f\n",I->r[idx],I->g[idx],I->b[idx]);
       I->r[idx] = I->r[idx] * valor;
+      if(I->r[idx] > 255){
+      	I->r[idx] = 255;
+      }
       I->g[idx] = I->g[idx] * valor;
+      if(I->g[idx] > 255){
+      	I->g[idx] = 255;
+      }
       I->b[idx] = I->b[idx] * valor;
+      if(I->b[idx] > 255){
+      	I->b[idx] = 255;
+      }
     }
   }
 
