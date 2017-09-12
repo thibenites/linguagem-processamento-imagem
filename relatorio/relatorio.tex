@@ -64,11 +64,11 @@ Para demonstração das funcionalidades, tomemos por base a imagem em sua forma 
 
 \begin{figure}[h]
 	\centering
-	\subfigure[]{\includegraphics[width=3cm]{Figuras/figura1}\label{fig1}}
+	\subfigure[]{\includegraphics[width=2.7cm]{Figuras/figura1}\label{fig1}}
 	\hspace{0.05cm}
-	\subfigure[]{\includegraphics[width=3cm]{Figuras/figura2}\label{fig2}}
+	\subfigure[]{\includegraphics[width=2.7cm]{Figuras/figura2}\label{fig2}}
 	\hspace{0.05cm}
-	\subfigure[]{\includegraphics[width=3cm]{Figuras/figura3}\label{fig3}}
+	\subfigure[]{\includegraphics[width=2.7cm]{Figuras/figura3}\label{fig3}}
 	\caption{Imagens: (a) original, (b) com brilho dobrado e (c) reduzido à metade.}
 	\label{comp}
 \end{figure}
@@ -78,11 +78,11 @@ Para as três figuras é possível aplicar a função que detecta o máximo valo
 \begin{lstlisting}[language=C, basicstyle=\footnotesize, frame=single]
 ./main
 [figura1.jpg]
-Intensidade maxima: 255.00
+Intensidade maxima: 254.00
 [figura2.jpg]
 Intensidade maxima: 255.00
 [figura3.jpg]
-Intensidade maxima: 140.33
+Intensidade maxima: 133.00
 \end{lstlisting}
 
 \section{Análise}
@@ -97,6 +97,7 @@ double alpha=1, double beta=0 ) const
 em que alpha e beta são fatores de escala que realizam a operação linear $g(x)=\alpha f(x) + \beta$, sobre a imagem $f(x)$, resultando na imagem $g(x)$ \cite{opencv}.
 
 O comando utilizado na nossa linguagem para tal função é mais simples, no sentido de que tem menos argumentos e lida com menos conceitos de programação que os outros dois, exigindo menos conhecimento do usuário. Por exemplo, no comando do OpenCV, é necessário entender que aplica-se uma transformação linear à imagem, com parâmetros que definem contraste e brilho, além de lidar com a imagem na forma matricial. Na nossa sintaxe, é necessário utilizar apenas os nomes dos arquivos e a intensidade de brilho que se deseja aplicar, ficando oculto para o usuário final o formato como a imagem é tratada e procedimentos realizados.
+
 Se por um lado comandos como o do OpenCV possam gerar maior flexibilidade para usuários avançados, sintaxes mais diretas favorecem o uso em aplicações específicas.
 
 \begin{thebibliography}{99}
