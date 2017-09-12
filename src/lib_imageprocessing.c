@@ -127,5 +127,5 @@ void valor_maximo(imagem *I){
         maximo = intensidade;
     }
   }
-  printf("Intensidade maxima: %f\n", maximo);
+  printf("Intensidade maxima: %.2f\n", maximo);
 }
