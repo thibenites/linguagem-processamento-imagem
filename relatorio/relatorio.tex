@@ -39,7 +39,7 @@
 
 %Um breve texto introdutório explicando do que se trata o documento, em uma linguagem que poderia ser entendida por qualquer pessoa que entenda programação (ou seja: referências diretas à disciplina não são desejáveis).
 
-Apresentamos uma linguagem de programação voltada para o processamento de imagens digitais. Ela foi implementada com um analisador léxico e utilizando de gramática livre de contexto. Como uma linguagem de programação de propósito específico, seu objetivo é ser intuitiva para o usuário \cite{dsl}. As funcionalidades que nossa linguagem é capaz de executar, assim como as respectivas sintaxes são apresentadas na Tabela \ref{tabela1}.
+Apresentamos uma linguagem de programação voltada para o processamento de imagens digitais. Ela foi implementada com uma gramática livre de contexto, usando analisadores léxicos e sintáticos. Como uma linguagem de propósito específico, pretende-se que seja intuitiva para o usuário \cite{dsl}. As funcionalidades que nossa linguagem é capaz de executar, assim como as respectivas sintaxes são apresentadas na Tabela \ref{tabela1}.
 
 \begin{table}[h]
 	\centering
@@ -54,7 +54,7 @@ Apresentamos uma linguagem de programação voltada para o processamento de imag
 	\end{tabular}
 \end{table}
 
-Nos processos de salvar uma imagem e de alterar seu brilho, é feita uma cópia do arquivo original. Calculamos o valor de cada pixel como a intensidade na conversão do espaço RGB para o HSI $I=\frac{1}{3}(R+G+B)$ \cite{rgb} na detecção do valor máximo da imagem.
+Nos processos de salvar uma imagem e de alterar seu brilho, são feitas cópias do arquivo original. Para detecção do valor máximo da imagem, calculamos o valor de cada pixel como a intensidade na conversão do espaço RGB para o HSI $I=\frac{1}{3}(R+G+B)$ \cite{rgb}.
 
 \section{Demonstração}
 
@@ -73,7 +73,7 @@ Para demonstração das funcionalidades, tomemos por base a imagem em sua forma 
 	\label{comp}
 \end{figure}
 
-Para as três figuras é possível aplicar a função que detecta o máximo valor de brilho, de acordo com a seguinte implementação e resultados:
+Para as três figuras é possível aplicar a função que detecta o máximo valor de brilho, de acordo com os resultados a seguir.
 \newline
 \newline
 \newline
@@ -96,22 +96,21 @@ Comparamos a ideia de usar um comando específico para alterar o brilho com apli
 void Mat::convertTo(OutputArray m, int rtype, 
 double alpha=1, double beta=0 ) const
 \end{lstlisting}
-em que alpha e beta são fatores de escala que realizam a operação linear $g(x)=\alpha f(x) + \beta$, sobre a imagem $f(x)$, resultando na imagem $g(x)$ \cite{opencv}.
+em que alpha e beta são fatores de escala que realizam a operação $g(x)=\alpha f(x) + \beta$, sobre a imagem $f(x)$, resultando na imagem $g(x)$ \cite{opencv}.
 
-O comando utilizado na nossa linguagem para tal função é mais simples, no sentido de que tem menos argumentos e lida com menos conceitos de programação que os outros dois, exigindo menos conhecimento do usuário. Por exemplo, no comando do OpenCV, é necessário entender que aplica-se uma transformação linear à imagem, com parâmetros que definem contraste e brilho, além de lidar com a imagem na forma matricial. Na nossa sintaxe, é necessário utilizar apenas os nomes dos arquivos e a intensidade de brilho que se deseja aplicar, ficando oculto para o usuário final o formato como a imagem é tratada e procedimentos realizados.
+O comando utilizado na nossa linguagem para tal função é mais simples, no sentido de que tem menos argumentos e lida com menos conceitos de programação que o do OpenCV, exigindo menos conhecimento do usuário. Por exemplo, no comando do OpenCV, é necessário entender que aplica-se uma transformação linear à imagem, com parâmetros que definem contraste e brilho, além de lidar com a imagem na forma matricial. Na nossa sintaxe, é necessário utilizar apenas os nomes dos arquivos e a intensidade de brilho que se deseja aplicar, ficando ocultos para o usuário final o formato como a imagem é tratada e os procedimentos realizados.
 
-Se por um lado comandos como o do OpenCV possam gerar maior flexibilidade para usuários avançados, sintaxes mais diretas oferecem ganho em expressividade e facilidade no uso, principalmente quando comparadas à linguagens de uso geral \cite{dsl}.
+Se por um lado comandos como o do OpenCV podem ser aplicados de forma mais geral, sintaxes mais diretas oferecem ganho em expressividade e facilidade no uso. Isso aumenta a quantidade de usuários em potencial da linguagem e permite uma maior produtividade, conforme afirma \cite{dsl}.
 
 \begin{thebibliography}{99}
 
-\bibitem{dsl} When and How to Develop Domain-Specific Languages. MERNIK, Marjan; HEERIN, Jan; SLOANE, M Anthony. Disponível em: \url{https://pdfs.semanticscholar.org/bd06/01088d5f217dc136a898f577763df92891cb.pdf}. Acesso em: 17 set. 2017.
+\bibitem{dsl} MERNIK, M., HEERIN, J., SLOANE, A. M. When and how to develop domain-specific languages. In: \textit{ACM Computing Surveys (CSUR)}. Nova York, vol. 37, ed. 4, p. 316-344, dez. 2005.
 
+\bibitem{rgb} Wikipedia. \textit{RGB color model}. Disponível em: \url{https://en.wikipedia.org/wiki/RGB_color_model}. Acesso em: 10 set. 2017.
 
-\bibitem{rgb} Wikipedia. RGB color model. Disponível em: \url{https://en.wikipedia.org/wiki/RGB_color_model}. Acesso em: 10 set. 2017.
+\bibitem{opencv2} OpenCV. \textit{Basic Structures}. Disponível em: \url{http://docs.opencv.org/2.4/modules/core/doc/basic_structures.html}. Acesso em: 11 set. 2017.
 
-\bibitem{opencv2} OpenCV. Basic Structures. Disponível em: \url{http://docs.opencv.org/2.4/modules/core/doc/basic_structures.html}. Acesso em: 11 set. 2017.
-
-\bibitem{opencv} OpenCV. Changing the contrast and brightness of an image!. Disponível em: \url{http://docs.opencv.org/2.4/doc/tutorials/core/basic_linear_transform/basic_linear_transform.html}. Acesso em: 11 set. 2017.
+\bibitem{opencv} OpenCV. \textit{Changing the contrast and brightness of an image!}. Disponível em: \url{http://docs.opencv.org/2.4/doc/tutorials/core/basic_linear_transform/basic_linear_transform.html}. Acesso em: 11 set. 2017.
 
 \end{thebibliography}
 
