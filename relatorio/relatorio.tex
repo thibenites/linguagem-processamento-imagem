@@ -20,7 +20,7 @@
 \patchcmd{\abstract}{Abstract}{Resumo}{}{}
 \patchcmd{\thebibliography}{References}{Referências}{}{}
 
-\title{\LARGE \bf Uma linguagem de programação para processamento de imagens}
+\title{\LARGE \bf Otimizando o tempo de execução no processamento de imagens}
 
 \author{Henrique Miyamoto e Thiago Benites \thanks{* Os códigos do projeto estão disponíveis em \url{https://github.com/miyamotohk/linguagem-processamento-imagem}.}}
 
@@ -39,7 +39,7 @@
 
 %Um breve texto introdutório explicando do que se trata o documento, em uma linguagem que poderia ser entendida por qualquer pessoa que entenda programação (ou seja: referências diretas à disciplina não são desejáveis).
 
-Apresentamos uma linguagem de programação voltada para o processamento de imagens digitais. Ela foi implementada com uma gramática livre de contexto, usando analisadores léxicos e sintáticos. Como uma linguagem de propósito específico, pretende-se que seja intuitiva para o usuário \cite{dsl}. As funcionalidades que nossa linguagem é capaz de executar, assim como as respectivas sintaxes são apresentadas na Tabela \ref{tabela1}.
+Apresentamos uma linguagem de programação com diferentes maneiras de realizar o processamento de imagens digitais. Ela foi implementada com uma gramática livre de contexto, usando analisadores léxicos e sintáticos. Como uma linguagem de propósito específico, pretende-se que seja intuitiva para o usuário \cite{dsl}. As funcionalidades que nossa linguagem é capaz de executar, assim como as respectivas sintaxes são apresentadas na Tabela \ref{tabela1}.
 
 \begin{table}[h]
 	\centering
@@ -50,65 +50,48 @@ Apresentamos uma linguagem de programação voltada para o processamento de imag
 		\textbf{Funcionalidade}        & \textbf{Sintaxe}                                                                                                                \\ \hline
 		Salvar uma imagem     & {destino.jpg = origem.jpg}                                                                                    \\ \hline
 		Alterar brilho        & \begin{tabular}[c]{@{}c@{}}{destino.jpg = origem.jpg * float}\\ {destino.jpg = origem.jpg / float}\end{tabular} \\ \hline
+		Alterar brilho usando threads        & \begin{tabular}[c]{@{}c@{}}{destino.jpg = origem.jpg * float thr}\end{tabular} \\ \hline
+		Alterar brilho usando processos        & \begin{tabular}[c]{@{}c@{}}{destino.jpg = origem.jpg * float prc}\end{tabular} \\ \hline
 		Detectar valor máximo & {[origem.jpg]}                                                                                            \\ \hline
 	\end{tabular}
 \end{table}
 
-Nos processos de salvar uma imagem e de alterar seu brilho, são feitas cópias do arquivo original. Para detecção do valor máximo da imagem, calculamos o valor de cada pixel como a intensidade na conversão do espaço RGB para o HSI $I=\frac{1}{3}(R+G+B)$ \cite{rgb}.
+Para as funções de alterar o brilho, foram realizadas medições temporais do desempenho. Sendo possível haver uma comparação entre os tempos, a discussão de otimização baseia-se nesses tempos e em suas respectivas implementações.
+
+Neste caso, a implementação simples se dá pela varredura, pixel a pixel, da matriz que representa a imagem. Já a implementção com multithread, faz com que as operações de alteração do brilho sejam feitas em grupos de pixel e de forma paralela.
 
 \section{Demonstração}
 
 %Entradas e saídas que demonstram as funcionalidades implementadas.
 
-Para demonstração das funcionalidades, tomemos por base a imagem em sua forma original apresentada na Figura \ref{fig1}. Quando aplicado brilho de fator multiplicativo 2, tem-se o resultado apresentado na Figura \ref{fig2}. Já ao dividir pelo mesmo fator, obtém-se o resultado da Figura \ref{fig3}.
+A tabela \ref{tabela2} indica os tempos de processamento para a aplicação da mesma intensidade de brilho em imagens de diferentes tamanhos. Ademais, alterou-se a quantidade de pixels analisadas a cada vez que uma função multithread foi chamada.
 
-\begin{figure}[h]
+\begin{table}[h]
 	\centering
-	\subfigure[]{\includegraphics[width=2.7cm]{Figuras/figura1}\label{fig1}}
-	\hspace{0.05cm}
-	\subfigure[]{\includegraphics[width=2.7cm]{Figuras/figura2}\label{fig2}}
-	\hspace{0.05cm}
-	\subfigure[]{\includegraphics[width=2.7cm]{Figuras/figura3}\label{fig3}}
-	\caption{Imagens: (a) original, (b) com brilho dobrado e (c) reduzido à metade.}
-	\label{comp}
-\end{figure}
-
-Para as três figuras é possível aplicar a função que detecta o máximo valor de brilho, de acordo com os resultados a seguir.
-
-\begin{lstlisting}[language=C, basicstyle=\footnotesize, frame=single]
-./main
-[figura1.jpg]
-Intensidade maxima: 254.00
-[figura2.jpg]
-Intensidade maxima: 255.00
-[figura3.jpg]
-Intensidade maxima: 133.00
-\end{lstlisting}
+	\caption{Tempo de processamento de acordo com a implementação e tamanho da imagem}
+	\label{tabela2}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Implementação}        & \textbf{Tamanho}                                                                                                               & \textbf{Tempo} \\ \hline
+		Simples     & {48x48}	& {0,046 ms}                                                                                    \\ \hline
+		Multithread (10 pixels)        & {48x48}	& {3,31 ms} \\ \hline
+		Multithread (48 pixels)        & {48x48}	& {0,45 ms} \\ \hline
+		Simples     & {2592x1944}	& {136,63 ms}                                                                                    \\ \hline
+		Multithread (600 pixels)        & {2592x1944}	& {69,87 ms} \\ \hline
+		Multithread (2592 pixels)        & {2592x1944}	& {14,99 ms} \\ \hline
+		
+	\end{tabular}
+\end{table}
 
 \section{Análise}
 
-%Comparando a idéia de usar os comandos específicos da linguagem para aplicar brilho com uma aplicação equivalente, usando alguma biblioteca de linguagem de propósito geral (por exemplo, `OpenCV`). A análise deve se basear em dados reais, e mostrar todos os dados sobre os quais ela se baseia (exemplos de código, citações bibliográficas ou outros dados que o grupo considere relevantes).
+%Aqui deve-se comparar a qualidade, em questão de tempo, de cada implementação. Ademais, analisar-se-á, quais métodos são vantajosos de acordo com diferentes tamanhos de imagens e de pixels fixados para análise por função.
 
-Comparamos a ideia de usar um comando específico para alterar o brilho com aplicações equivalentes de propósito geral, como OpenCV. Em sua versão para C++, a aplicação de brilho a uma imagem pode ser feita através do comando convertTo(), com a seguinte sintaxe \cite{opencv2}:
-\begin{lstlisting}[language=C, basicstyle=\footnotesize]
-void Mat::convertTo(OutputArray m, int rtype, 
-double alpha=1, double beta=0 ) const
-\end{lstlisting}
-em que alpha e beta são fatores de escala que realizam a operação $g(x)=\alpha f(x) + \beta$, sobre a imagem $f(x)$, resultando na imagem $g(x)$ \cite{opencv}.
 
-O comando utilizado na nossa linguagem para tal função é mais simples, no sentido de que tem menos argumentos e lida com menos conceitos de programação que o do OpenCV, exigindo menos conhecimento do usuário. Por exemplo, no comando do OpenCV, é necessário entender que aplica-se uma transformação linear à imagem, com parâmetros que definem contraste e brilho, além de lidar com a imagem na forma matricial. Na nossa sintaxe, é necessário utilizar apenas os nomes dos arquivos e a intensidade de brilho que se deseja aplicar, ficando ocultos para o usuário final o formato como a imagem é tratada e os procedimentos realizados.
-
-Se por um lado comandos como o do OpenCV podem ser aplicados de forma mais geral, sintaxes mais diretas oferecem ganho em expressividade e facilidade no uso. Isso aumenta a quantidade de usuários em potencial da linguagem e permite uma maior produtividade, conforme afirma \cite{dsl}.
 
 \begin{thebibliography}{99}
 
 \bibitem{dsl} MERNIK, M., HEERIN, J., SLOANE, A. M. When and how to develop domain-specific languages. In: \textit{ACM Computing Surveys (CSUR)}. Nova York, vol. 37, ed. 4, p. 316-344, dez. 2005.
-
-\bibitem{rgb} Wikipedia. \textit{RGB color model}. Disponível em: \url{https://en.wikipedia.org/wiki/RGB_color_model}. Acesso em: 10 set. 2017.
-
-\bibitem{opencv2} OpenCV. \textit{Basic Structures}. Disponível em: \url{http://docs.opencv.org/2.4/modules/core/doc/basic_structures.html}. Acesso em: 11 set. 2017.
-
-\bibitem{opencv} OpenCV. \textit{Changing the contrast and brightness of an image!}. Disponível em: \url{http://docs.opencv.org/2.4/doc/tutorials/core/basic_linear_transform/basic_linear_transform.html}. Acesso em: 11 set. 2017.
 
 \end{thebibliography}
 

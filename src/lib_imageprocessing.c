@@ -6,7 +6,7 @@
 
 #include "imageprocessing.h"
 
-#define n_threads 1000
+#define n_threads 2592
 
 #ifndef min
 #define min(a,b)            (((a) < (b)) ? (a) : (b))
@@ -140,7 +140,7 @@ void* mult_thread(void *arg) {
   float valor = thread_args->valor;
   imagem *I = thread_args->I;
   int pos = thread_args->posicao;
-  
+  //Varre os pixels dentro de cada bloco
     for(k=(thread_args->posicao); k<((thread_args->posicao) + n_threads); k++){
         if(k < (I->width)*(I->height)){
             if(controle%N == 0 && k > (controle/N)*I->width){
@@ -169,10 +169,8 @@ void aplicar_brilho_thr(imagem *I, float valor) {
         if(N < Nx){
             N++;
         }
-        //printf("N=%d, width=%d, n_threads=%d\n",N,I->width,n_threads);
   	//Varre os blocos de pixels de tamanho n_threads
         for(int j = 0; j < N; j++){
-            //Varre os pixels dentro de cada bloco
             struct Argumentos *thread_args = (struct Argumentos *) malloc(sizeof(struct Argumentos));
             
             //printf("i=%d, j=%d, posicao=%d\n",i,j,i*I->width + (j*n_threads));

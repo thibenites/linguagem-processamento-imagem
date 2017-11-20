@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.31)  18 SEP 2017 21:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.29)  20 NOV 2017 21:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **relatorio.tex
 (./relatorio.tex
 LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+Babel <3.9q> and hyphenation patterns for 6 language(s) loaded.
 (./ieeeconf.cls
 Document Class: ieeeconf 2016/4/23 revision V1.6b by Pradeep Misra
 \@IEEEtrantmpdimenA=\dimen102
@@ -904,66 +904,6 @@ LaTeX Font Info:    Try loading font information for T1+pcr on input line 29.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
-
-<Figuras/figura1.jpg, id=25, 642.4pt x 642.4pt>
-File: Figuras/figura1.jpg Graphic file (type jpg)
- <use Figuras/figura1.jpg>
-Package pdftex.def Info: Figuras/figura1.jpg used on input line 67.
-(pdftex.def)             Requested size: 76.82234pt x 76.82pt.
-
-<Figuras/figura2.jpg, id=26, 642.4pt x 642.4pt>
-File: Figuras/figura2.jpg Graphic file (type jpg)
- <use Figuras/figura2.jpg>
-Package pdftex.def Info: Figuras/figura2.jpg used on input line 69.
-(pdftex.def)             Requested size: 76.82234pt x 76.82pt.
-
-<Figuras/figura3.jpg, id=27, 642.4pt x 642.4pt>
-File: Figuras/figura3.jpg Graphic file (type jpg)
- <use Figuras/figura3.jpg>
-Package pdftex.def Info: Figuras/figura3.jpg used on input line 71.
-(pdftex.def)             Requested size: 76.82234pt x 76.82pt.
-
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-)
-Underfull \hbox (badness 2772) in paragraph at lines 107--108
-[]\T1/ptm/m/n/8 Wikipedia. \T1/ptm/m/it/8 RGB co-lor mo-del\T1/ptm/m/n/8 . Dis-
-po-ní-vel em: []$\T1/pcr/m/n/8 https : / / en .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
-[]\T1/ptm/m/n/8 OpenCV. \T1/ptm/m/it/8 Ba-sic Struc-tu-res\T1/ptm/m/n/8 . Dis-p
-o-ní-vel em: []$\T1/pcr/m/n/8 http : / /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
-\T1/pcr/m/n/8 docs . opencv . org / 2 . 4 / modules / core / doc / basic _
- []
-
-
-Underfull \hbox (badness 1661) in paragraph at lines 111--112
-[]\T1/ptm/m/n/8 OpenCV. \T1/ptm/m/it/8 Chan-ging the con-trast and bright-ness 
-of an image!\T1/ptm/m/n/8 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
-\T1/ptm/m/n/8 Dis-po-ní-vel em: []$\T1/pcr/m/n/8 http : / / docs . opencv . org
- / 2 . 4 / doc /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
-\T1/pcr/m/n/8 tutorials / core / basic _ linear _ transform / basic _
- []
-
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -975,37 +915,36 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 115.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 98.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
- <./Figuras/figura1.jpg> <./Figuras/figura2.jpg> <./Figuras/figura3.jpg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 115.
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 98.
  (./relatorio.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 115.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 115.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 98.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 98.
 Package rerunfilecheck Info: File `relatorio.out' has not changed.
 (rerunfilecheck)             Checksum: E973C0429C472B111D22E2C7F372258B;201.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 115.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 98.
  ) 
 Here is how much of TeX's memory you used:
- 9867 strings out of 493029
- 137444 string characters out of 6136234
- 261819 words of memory out of 5000000
- 13227 multiletter control sequences out of 15000+600000
- 126085 words of font info for 146 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 30i,13n,51p,932b,1613s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 9398 strings out of 494888
+ 132651 string characters out of 6179127
+ 232691 words of memory out of 5000000
+ 12559 multiletter control sequences out of 15000+600000
+ 117373 words of font info for 126 fonts, out of 8000000 for 9000
+ 38 hyphenation exceptions out of 8191
+ 30i,13n,32p,932b,328s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
-tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on relatorio.pdf (1 page, 283286 bytes).
+e/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
+/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.
+pfb>
+Output written on relatorio.pdf (1 page, 53971 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 84 compressed objects within 1 object stream
- 26 named destinations out of 1000 (max. 500000)
- 48 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
+ 9 named destinations out of 1000 (max. 500000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
