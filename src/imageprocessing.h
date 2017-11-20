@@ -1,7 +1,7 @@
 #ifndef IMAGEPROCESSING_H
 #define IMAGEPROCESSING_H
 
-typedef struct {
+typedef struct{
   unsigned int width, height;
   float *r, *g, *b;
 } imagem;

@@ -6,19 +6,20 @@
 
 #include "imageprocessing.h"
 
-#define n_threads 1
+#define n_threads 1000
 
-typedef struct {
+#ifndef min
+#define min(a,b)            (((a) < (b)) ? (a) : (b))
+#endif
+
+int controle = 0;
+
+struct Argumentos{
 	int posicao;
 	float valor;
 	imagem * I;
-} Argumentos;
-
-/*
-imagem abrir_imagem(char *nome_do_arquivo);
-void salvar_imagem(char *nome_do_arquivo);
-void liberar_imagem(imagem *i);
- */
+        int qtd;
+} ;
 
 imagem abrir_imagem(char *nome_do_arquivo) {
   FIBITMAP *bitmapIn;
@@ -130,23 +131,30 @@ void aplicar_brilho(imagem *I, float valor) {
 
 //Aplicacao de brilho com multithread
 void* mult_thread(void *arg) {
-  Argumentos* N = (Argumentos*)arg;
-  int idx = N->posicao;
-  float valor = N->valor;
-  imagem *I = N->I;
-
-  I->r[idx] = I->r[idx] * valor;
-  if(I->r[idx] > 255)
-  	I->r[idx] = 255;
-
-  I->g[idx] = I->g[idx] * valor;
-  if(I->g[idx] > 255)
-  	I->g[idx] = 255;
+  int k;
+  controle++;
   
-  I->b[idx] = I->b[idx] * valor;
-  if(I->b[idx] > 255)
-  	I->b[idx] = 255;
+  struct Argumentos *thread_args = arg;
   
+  int N = thread_args->qtd;
+  float valor = thread_args->valor;
+  imagem *I = thread_args->I;
+  int pos = thread_args->posicao;
+  
+    for(k=(thread_args->posicao); k<((thread_args->posicao) + n_threads); k++){
+        if(k < (I->width)*(I->height)){
+            if(controle%N == 0 && k > (controle/N)*I->width){
+                //do nothing
+            }
+            else{
+                I->r[k] = min(I->r[k] * valor, 255);
+
+                I->g[k] = min(I->g[k] * valor, 255);
+
+                I->b[k] = min(I->b[k] * valor, 255);
+            }
+        }
+    }
   return NULL;
 }
 
@@ -154,32 +162,34 @@ void aplicar_brilho_thr(imagem *I, float valor) {
   clock_t t;
   t = clock();
 
-  pthread_t threads[n_threads];
-  Argumentos thread_args[n_threads];
-
   //Varre a matriz por linhas
   for (int i = 0; i < I->height; i++) {
-  	int N = (int)((float)(I->width)/n_threads + 0.5); //Quantidade de vetores de threads necessarios
-  	//printf("N=%d, width=%d, n_threads=%d\n",N,I->width,n_threads);
+  	int N = ((I->width)/n_threads);//Quantidade de vetores de threads necessarios
+  	float Nx = ((float)(I->width)/n_threads);
+        if(N < Nx){
+            N++;
+        }
+        //printf("N=%d, width=%d, n_threads=%d\n",N,I->width,n_threads);
   	//Varre os blocos de pixels de tamanho n_threads
-  	for(int j = 0; j*(n_threads) < I->width; j++){
-  		//Varre os pixels dentro de cada bloco
-  		for(int k = 0; k < n_threads; k++){
-  			//Verifica se os pixels da linha ainda estao dentro da imagem
-  			if((j*n_threads) + k < I->width){
-  				//printf("i=%d, j=%d, k=%d, posicao=%d\n",i,j,k,i*I->width + (j*n_threads) + k);
-  				thread_args[k].posicao = i*I->width + (j*n_threads) + k;
-  				thread_args[k].valor = valor;
-  				thread_args[k].I = I;
-  			}
-  		}
-  		pthread_create(&(threads[k]), NULL, mult_thread, &(thread_args[k]));
-  		//Esperando threads terminarem!
-     	for (int k = 0; k < n_threads; k++){
-     		if((j*n_threads) + k < I->width)
-    			pthread_join(threads[k], NULL);
- 		 }
-  	}
+        for(int j = 0; j < N; j++){
+            //Varre os pixels dentro de cada bloco
+            struct Argumentos *thread_args = (struct Argumentos *) malloc(sizeof(struct Argumentos));
+            
+            //printf("i=%d, j=%d, posicao=%d\n",i,j,i*I->width + (j*n_threads));
+            
+            thread_args->posicao = i*I->width + (j*n_threads);
+            thread_args->valor = valor;
+            thread_args->I = I;
+            thread_args->qtd = N;
+            
+            pthread_t threads;
+            
+            pthread_create(&(threads), NULL, mult_thread, thread_args);
+            
+            //Esperando threads terminarem!
+            pthread_join(threads, NULL);
+           
+        }
   }
 
   t = clock() - t;
