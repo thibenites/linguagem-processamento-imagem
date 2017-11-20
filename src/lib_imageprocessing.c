@@ -6,7 +6,7 @@
 
 #include "imageprocessing.h"
 
-#define n_threads 2592
+#define n_threads 1000
 
 #ifndef min
 #define min(a,b)            (((a) < (b)) ? (a) : (b))
